@@ -1,7 +1,8 @@
 import json
 import logging
-from urlparse import urlparse
+# from urlparse import urlparse
 import requests
+from requests.utils import urlparse
 import cnrclient
 from cnrclient.discovery import ishosted, discover_sources
 

@@ -13,6 +13,7 @@ with open('README.md') as readme_file:
 
 requirements = [
     'futures',
+    'future',
 ]
 
 test_requirements = [
