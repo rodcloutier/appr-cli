@@ -60,11 +60,11 @@ class CommandBase(object):
     @classmethod
     def call(cls, options):
         try:
-            cls(options)()
+            cls(options).exec_cmd()
         except requests.exceptions.RequestException as exc:
-            raise argparse.ArgumentTypeError(exc.message)
+            raise argparse.ArgumentTypeError(exc.__class__.__name__)
 
-    def __call__(self):
+    def exec_cmd(self):
         self._call()
         self.render()
 
