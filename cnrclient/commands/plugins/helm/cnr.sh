@@ -1,8 +1,16 @@
 #!/bin/bash
 
+function update_cnr {
+    echo "wip: install/update cnr-cli"
+    if [ -e ./cnr ] ; then
+        chmod +x ./cnr
+    fi
+
+}
+
 function pull {
     #echo "pull $@"
-    release=`cnr pull --media-type helm --tarball ${@} |tail -n1`
+    release=`./cnr pull --media-type helm --tarball ${@} |tail -n1`
     echo $release
 }
 
@@ -13,11 +21,14 @@ function install {
 }
 
 function cnr_helm {
-    cnr $@ --media-type=helm
+    ./cnr $@ --media-type=helm
 }
 
 
 case "$1" in
+    init-plugin)
+        update_cnr
+        ;;
     install)
         install "${@:2}"
         ;;
@@ -40,7 +51,7 @@ case "$1" in
         cnr_helm "$@"
         ;;
     *)
-        cnr $@
+        ./cnr $@
         ;;
 
 esac
